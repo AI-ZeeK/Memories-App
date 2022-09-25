@@ -17,6 +17,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector((state) =>
 		currentId ? state.posts.find((p) => p._id === currentId) : null
 	);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -28,13 +29,24 @@ const Form = ({ currentId, setCurrentId }) => {
 		e.preventDefault();
 		if (currentId) {
 			dispatch(updatePost(postData));
+			console.log(currentId);
 		} else {
 			dispatch(createPost(postData));
 		}
 
 		console.log(postData);
+		clear();
 	};
-	const clear = () => {};
+	const clear = () => {
+		setCurrentId(null);
+		setPostData({
+			creator: "",
+			title: "",
+			message: "",
+			tags: "",
+			selectedFile: "",
+		});
+	};
 	return (
 		<Paper className="paper">
 			<form
@@ -42,7 +54,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				noValidate
 				className="form"
 				onSubmit={handleSubmit}>
-				<Typography variant="h6">Creating a Memory</Typography>
+				<Typography variant="h6">
+					{currentId ? "Editing" : "Creating"} a Memory
+				</Typography>
 				<TextField
 					name="creator"
 					variant="outlined"
