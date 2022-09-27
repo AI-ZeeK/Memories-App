@@ -13,7 +13,7 @@ const App = () => {
 
 	useEffect(() => {
 		dispatch(getPosts());
-	}, [dispatch]);
+	}, [currentId, dispatch]);
 	return (
 		<Container maxWidth="lg">
 			<AppBar className="appBar" position="static" color="inherit">
