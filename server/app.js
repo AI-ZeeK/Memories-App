@@ -15,11 +15,11 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
-	res.json({ message: "render" });
+	res.send("Deployed successfully");
 });
 app.use("/posts", postRoutes);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () =>
-	console.log(`Server started on http://localhost:${PORT}`.red.bold.italic)
+	console.log(`Server started on port:${PORT}`.red.bold.italic)
 );
