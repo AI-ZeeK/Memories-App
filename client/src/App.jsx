@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { getPosts } from "./actions/posts";
-import { Container, AppBar, Typography, Grow, Grid } from "@mui/material";
-import memories from "./images/memories.png";
+import { Container, Grow, Grid } from "@mui/material";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+
 import { useDispatch } from "react-redux";
-import Posts from "./components/Posts/Posts";
-import Form from "./components/Form/Form";
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import Auth from "./components/Auth/Auth";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -15,29 +17,15 @@ const App = () => {
 		dispatch(getPosts());
 	}, [currentId, dispatch]);
 	return (
-		<Container maxWidth="lg">
-			<AppBar className="appBar" position="static" color="inherit">
-				<Typography className="heading" variant="h2" align="center">
-					Memories
-				</Typography>
-				<img className="image" src={memories} alt="memories" height="60" />
-			</AppBar>
-			<Grow in x>
-				<Grid
-					className="mainContainer"
-					container
-					justify="space-between"
-					alignItems="stretch"
-					spacing={3}>
-					<Grid item xs={12} sm={7}>
-						<Posts setCurrentId={setCurrentId} />
-					</Grid>
-					<Grid item xs={12} sm={4}>
-						<Form currentId={currentId} setCurrentId={setCurrentId} />
-					</Grid>
-				</Grid>
-			</Grow>
-		</Container>
+		<>
+			<Container maxWidth="lg">
+				<Navbar />
+				<Routes>
+					<Route path="/" exact element={<Home />} />
+					<Route path="/auth" exact element={<Auth />} />
+				</Routes>
+			</Container>
+		</>
 	);
 };
 
