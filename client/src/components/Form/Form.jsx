@@ -7,7 +7,6 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
 	const [postData, setPostData] = useState({
-		creator: "",
 		title: "",
 		message: "",
 		tags: "",
@@ -17,6 +16,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector((state) =>
 		currentId ? state.posts.find((p) => p._id === currentId) : null
 	);
+	const user = JSON.parse(localStorage.getItem("profile"));
 
 	const dispatch = useDispatch();
 
@@ -25,27 +25,39 @@ const Form = ({ currentId, setCurrentId }) => {
 			setPostData(post);
 		}
 	}, [post]);
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (currentId) {
-			dispatch(updatePost(currentId, postData));
+		if (!currentId) {
+			console.log('create')
+			dispatch(createPost({ ...postData, name: user?.result?.name }));
 		} else {
-			dispatch(createPost(postData));
+			console.log('update')
+			dispatch(
+				updatePost(currentId, { ...postData, name: user?.result?.name })
+			);
 		}
 
-		console.log(postData);
 		clear();
 	};
 	const clear = () => {
 		setCurrentId(null);
 		setPostData({
-			creator: "",
 			title: "",
 			message: "",
 			tags: "",
 			selectedFile: "",
 		});
 	};
+
+	if (!user?.result?.name) {
+		return (
+			<Paper className="paper">
+				<Typography variant="h6" align="center">
+					Please Sign In to create your own memories and like others memories
+				</Typography>
+			</Paper>
+		);
+	}
 	return (
 		<Paper className="paper">
 			<form
@@ -56,7 +68,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Typography variant="h6">
 					{currentId ? "Editing" : "Creating"} a Memory
 				</Typography>
-				<TextField
+				{/* <TextField
 					name="creator"
 					variant="outlined"
 					label="Creator"
@@ -65,7 +77,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					onChange={(e) =>
 						setPostData({ ...postData, creator: e.target.value })
 					}
-				/>
+				/> */}
 				<TextField
 					name="title"
 					variant="outlined"

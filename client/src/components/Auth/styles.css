@@ -3,20 +3,37 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 1rem;
+	padding: 1.5rem;
 }
 
 .avatar {
 	margin: 0.5rem;
 	background-color: red;
 }
-form {
+.form {
 	width: 100%;
 	margin-top: 1.5rem;
+	gap: 0.5rem !important;
+	padding: 1rem !important;
 }
 .submit {
 	margin: 1.5rem 0 1rem;
 }
 .googleButton {
 	margin-bottom: 1rem;
+	/* background-color: red !important; */
+}
+
+.my-space {
+	margin: 0.5rem;
+}
+
+.my-gap-1 {
+	gap: 1rem !important;
+}
+
+.my-form {
+	display: flex !important;
+	flex-direction: column;
+	gap: 0.2rem;
 }
