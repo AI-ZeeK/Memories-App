@@ -19,7 +19,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
 		// sign up the user
 		const { data } = await signupAPi(formData);
 
-		console.log("Sign up");
+		console.log("Sign up" , data);
 		dispatch({ type: AUTH, data });
 
 		navigate("/");
