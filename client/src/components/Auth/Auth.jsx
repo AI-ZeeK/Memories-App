@@ -66,14 +66,14 @@ const Auth = () => {
 	};
 
 	return (
-		<Container component="main" maxWidth="xs">
+		<Container component="main" maxWidth="xs" className='card-block'>
 			<Paper className="paper" elevation={3}>
 				<Avatar className="avatar">
 					<LockOutlined />
 				</Avatar>
 				<Typography variant="h5">{isSignUp ? "Sign Up" : "Sign In"}</Typography>
 				<form action="" onSubmit={handleSubmit} className="form">
-					<Grid container spacing={2} className="my-form">
+					<div className="my-form">
 						{isSignUp && (
 							<>
 								<Input
@@ -109,7 +109,7 @@ const Auth = () => {
 								type="password"
 							/>
 						)}
-					</Grid>
+					</div>
 					<Button
 						type="submit"
 						fullWidth

@@ -26,13 +26,17 @@ const Navbar = () => {
 	}, [location]);
 	return (
 		<>
-			<AppBar className="appBar" position="static" color="inherit">
+			<AppBar className="app-Bar"  position="static" color="inherit">
+				<div className="appBar">
+					
+
+				
 				<div className="brandContainer">
 					<Typography
 						component={Link}
 						to="/"
 						className="heading"
-						variant="h2"
+						variant="h3"
 						align="center">
 						Memories
 					</Typography>
@@ -53,7 +57,7 @@ const Navbar = () => {
 								</Typography>
 								<Button
 									variant="contained"
-									className="logout"
+									className="logout btn"
 									color="secondary"
 									onClick={logOut}>
 									Logout
@@ -65,6 +69,8 @@ const Navbar = () => {
 							<Button
 								component={Link}
 								to="/auth"
+								className="btn"
+
 								variant="contained"
 								color="primary">
 								Sign In
@@ -72,6 +78,7 @@ const Navbar = () => {
 						</>
 					)}
 				</Toolbar>
+				</div>
 			</AppBar>
 		</>
 	);

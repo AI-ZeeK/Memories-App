@@ -1,6 +1,15 @@
 .paper {
 	padding: 16px;
 }
+.card {
+	/* border: 1px solid red */
+	border-radius: 16px !important;
+}
+@media (min-width: 540px) and (max-width: 780px) {
+	.paper {
+		width: 100%
+	}
+}
 .form {
 	display: flex;
 	flex-wrap: wrap;

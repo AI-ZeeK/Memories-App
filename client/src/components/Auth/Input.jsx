@@ -12,8 +12,8 @@ const Input = ({
 	handleShowPassword,
 }) => {
 	return (
-		<Grid xs={6} md={12} sm={half ? 6 : 12}>
-			<TextField
+		<div xs={6} md={12} sm={half ? 6 : 12} className='input-box'>
+			{/* <TextField
 				className="my-space"
 				name={name}
 				onChange={handleChange}
@@ -38,8 +38,35 @@ const Input = ({
 						),
 					}
 				}
+			/> */}
+			<input
+				className="my-space"
+				name={name}
+				onChange={handleChange}
+				variant="outlined"
+				required
+				fullWidth
+				label={label}
+				placeholder={label}
+				autoFocus={autoFocus}
+				type={type}
+				InputProps={
+					name === "password" && {
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton onClick={handleShowPassword}>
+									{type === "password" ? (
+										<VisibilityIcon />
+									) : (
+										<VisibilityOffIcon />
+									)}
+								</IconButton>
+							</InputAdornment>
+						),
+					}
+				}
 			/>
-		</Grid>
+		</div>
 	);
 };
 
