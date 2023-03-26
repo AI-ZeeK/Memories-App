@@ -66,6 +66,7 @@ export const deletePost = async (req, res) => {
 
 export const likePost = async (req, res) => {
   const { id } = req.params;
+  const { userId } = req.body;
 
   if (!req.userId) return req.json({ message: "Unathenticated" });
 
@@ -75,11 +76,11 @@ export const likePost = async (req, res) => {
     }
     const post = await PostMessage.findById(id);
 
-    const index = post.likeCount.find((id) => id === req.userId);
+    const index = post.likeCount.find((id) => id === userId);
     if (!index) {
-      post.likeCount.push(req.userId);
+      post.likeCount.push(userId);
     } else {
-      post.likeCount = post.likeCount.filter((id) => id !== req.userId);
+      post.likeCount = post.likeCount.filter((id) => id !== userId);
     }
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
       new: true,

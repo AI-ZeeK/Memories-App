@@ -17,16 +17,17 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId, currentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  console.log(user.result?._id, post._id);
   const Likes = () => {
     if (post.likeCount.length > 0) {
       return post.likeCount.find(
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" /> &nbsp; Like
+          <ThumbUpAltIcon fontSize="small" /> &nbsp;{post.likeCount.length} Like
           {post.likeCount.length > 2
             ? `You and ${post.likeCount.length - 1} others`
             : `${post.likeCount.length > 1 ? "s" : ""} `}
@@ -91,7 +92,7 @@ const Post = ({ post, setCurrentId }) => {
           color="primary"
           disabled={!user?.result}
           onClick={() => {
-            dispatch(likePost(post._id));
+            dispatch(likePost([post._id, user.result?._id]));
           }}>
           <Likes />
           {/* &nbsp; {post?.likeCount?.length + 1} */}

@@ -6,33 +6,33 @@ import Form from "../Form/Form";
 import Posts from "../Posts/Posts";
 
 const Home = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(null);
 
-	useEffect(() => {
-		dispatch(getPosts());
-	}, [currentId, dispatch]);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
-	return (
-		<div>
-			<Grow in x>
-				<Grid
-					className="mainContainer"
-					container
-					justify="space-between"
-					alignItems="stretch"
-					spacing={3}>
-					<Grid item xs={12} sm={7}>
-						<Posts setCurrentId={setCurrentId} />
-					</Grid>
-					<Grid item xs={12} sm={4}>
-						<Form currentId={currentId} setCurrentId={setCurrentId} />
-					</Grid>
-				</Grid>
-			</Grow>
-		</div>
-	);
+  return (
+    <div>
+      <Grow in x>
+        <Grid
+          className="mainContainer"
+          container
+          justify="space-between"
+          alignItems="stretch"
+          spacing={3}>
+          <Grid item xs={12} sm={7}>
+            <Posts currentId={currentId} setCurrentId={setCurrentId} />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
+          </Grid>
+        </Grid>
+      </Grow>
+    </div>
+  );
 };
 
 export default Home;
