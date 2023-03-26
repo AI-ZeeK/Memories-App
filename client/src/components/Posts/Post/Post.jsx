@@ -20,17 +20,16 @@ import { deletePost, likePost } from "../../../actions/posts";
 const Post = ({ post, setCurrentId, currentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-  console.log(user.result?._id, post._id);
   const Likes = () => {
     if (post.likeCount.length > 0) {
       return post.likeCount.find(
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" /> &nbsp;{post.likeCount.length} Like
+          <ThumbUpAltIcon fontSize="small" /> &nbsp;{post.likeCount.length}{" "}
           {post.likeCount.length > 2
             ? `You and ${post.likeCount.length - 1} others`
-            : `${post.likeCount.length > 1 ? "s" : ""} `}
+            : `${post.likeCount.length > 1 ? "Likes" : "Like"} `}
         </>
       ) : (
         <>

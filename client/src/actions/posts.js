@@ -52,9 +52,8 @@ export const likePost =
   ([postId, userId]) =>
   async (dispatch) => {
     try {
-      console.log(postId, userId);
-      const { data } = await likePostApi(postId, userId);
-      console.log(data);
+      const { data } = await likePostApi([postId, userId]);
+      console.log(userId, postId, data);
       dispatch({ type: UPDATE, payload: data });
     } catch (error) {
       console.log(error);

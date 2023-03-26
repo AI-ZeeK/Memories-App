@@ -67,8 +67,7 @@ export const deletePost = async (req, res) => {
 export const likePost = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
-
-  if (!req.userId) return req.json({ message: "Unathenticated" });
+  if (!userId) return res.json({ message: "Unathenticated" });
 
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
