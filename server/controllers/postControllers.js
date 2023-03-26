@@ -75,9 +75,10 @@ export const likePost = async (req, res) => {
     }
     const post = await PostMessage.findById(id);
 
-    const index = post.likeCount.findIndex((id) => id === String(req.userId));
+    // const index = post.likeCount.findIndex((id) => id === String(req.userId));
+    const index = post.likeCount.map((id) => id === req.userId && id);
 
-    if (index === -1) {
+    if (index) {
       post.likeCount.push(req.userId);
     } else {
       post.likeCount = post.likeCount.filter((id) => id === String(req.userId));
