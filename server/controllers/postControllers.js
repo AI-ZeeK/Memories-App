@@ -75,12 +75,12 @@ export const likePost = async (req, res) => {
     }
     const post = await PostMessage.findById(id);
 
-    const index = post.likeCount.findIndex((id) => id === String(req.userId));
+    const index = post.likes.findIndex((id) => id === String(req.userId));
 
     if (index === -1) {
-      post.likeCount.push(req.userId);
+      post.likes.push(req.userId);
     } else {
-      post.likeCount = post.likeCount.filter((id) => id === String(req.userId));
+      post.likes = post.likes.filter((id) => id === String(req.userId));
     }
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {
       new: true,

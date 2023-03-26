@@ -21,20 +21,20 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
   const Likes = () => {
-    if (post.likes.length > 0) {
-      return post.likes.find(
+    if (post.likeCount.length > 0) {
+      return post.likeCount.find(
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
           <ThumbUpAltIcon fontSize="small" /> &nbsp;{" "}
-          {post.likes.length > 2
-            ? `You and ${post.likes.length - 1} others`
-            : `${post.likes.length > 1 ? "s" : ""} `}
+          {post.likeCount.length > 2
+            ? `You and ${post.likeCount.length - 1} others`
+            : `${post.likeCount.length > 1 ? "s" : ""} `}
         </>
       ) : (
         <>
-          <ThumbUpAltIcon fontSize="small" /> &nbsp; {post.likes.length}{" "}
-          {post.likes.length === 1 ? "like" : "likes"}
+          <ThumbUpAltIcon fontSize="small" /> &nbsp; {post.likeCount.length}{" "}
+          {post.likeCount.length === 1 ? "like" : "likes"}
         </>
       );
     }
@@ -94,7 +94,7 @@ const Post = ({ post, setCurrentId }) => {
             dispatch(likePost(post._id));
           }}>
           <Likes />
-          &nbsp; {post.likeCount}
+          &nbsp; {post?.likeCount?.length + 1}
         </Button>
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post.creator) && (
