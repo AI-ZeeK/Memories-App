@@ -26,10 +26,12 @@ const Post = ({ post, setCurrentId, currentId }) => {
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" /> &nbsp;{post.likeCount.length}{" "}
+          <ThumbUpAltIcon fontSize="small" /> &nbsp;{" "}
           {post.likeCount.length > 2
             ? `You and ${post.likeCount.length - 1} others`
-            : `${post.likeCount.length > 1 ? "Likes" : "Like"} `}
+            : `${post.likeCount.length} ${
+                post.likeCount.length > 1 ? "Likes" : "Like"
+              } `}
         </>
       ) : (
         <>
