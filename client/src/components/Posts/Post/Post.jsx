@@ -26,7 +26,7 @@ const Post = ({ post, setCurrentId }) => {
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" /> &nbsp;{" "}
+          <ThumbUpAltIcon fontSize="small" /> &nbsp; Like
           {post.likeCount.length > 2
             ? `You and ${post.likeCount.length - 1} others`
             : `${post.likeCount.length > 1 ? "s" : ""} `}
@@ -94,7 +94,7 @@ const Post = ({ post, setCurrentId }) => {
             dispatch(likePost(post._id));
           }}>
           <Likes />
-          &nbsp; {post?.likeCount?.length + 1}
+          {/* &nbsp; {post?.likeCount?.length + 1} */}
         </Button>
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post.creator) && (
