@@ -58,7 +58,7 @@
     width: 100% !important;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    /* gap: 1rem; */
   }
   .toolbar,
   .profile {
@@ -76,6 +76,34 @@
 
   .profile {
     width: 100% !important;
+    display: grid;
+    place-items: center;
+    gap: 0.4rem;
+  }
+  .heading {
+    font-size: 2rem !important;
+  }
+  .image {
+    height: 2rem !important;
+    width: 2rem !important;
+  }
+  .prof-top {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: space-between !important;
+    width: 100%;
+  }
+  .purple {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+  }
+  .userName {
+    font-size: 1rem !important;
+  }
+  .btn {
+    height: 2.4rem !important;
+    font-size: 0.8rem !important;
+    width: 100%;
   }
 }
 .heading {
