@@ -20,6 +20,8 @@ import { deletePost, likePost } from "../../../actions/posts";
 const Post = ({ post, setCurrentId, currentId }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  console.log(user, post);
+  console.log(user === null || user?.result?.googleId === post?.creator);
   const Likes = () => {
     if (post.likeCount.length > 0) {
       return post.likeCount.find(
@@ -98,8 +100,9 @@ const Post = ({ post, setCurrentId, currentId }) => {
           <Likes />
           {/* &nbsp; {post?.likeCount?.length + 1} */}
         </Button>
-        {(user?.result?.googleId === post?.creator ||
-          user?.result?._id === post.creator) && (
+        {(user !== null ||
+          user?.result?.googleId === post?.creator ||
+          user?.result?._id === post?.creator) && (
           <Button
             size="small"
             color="primary"
